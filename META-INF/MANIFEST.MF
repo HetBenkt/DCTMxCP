@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Created-By: AMNL
+Copyright: AMPLEXOR
+Version: 1.0
+Build-Version: 2.2.0000.2960
+Bundle-Version: 2.2.0000.2960
+Built-By: bosa
+EMC-XCP-ExecutionEnvironment: com.emc.executionenvironment.xcp:2.2.0
+Component-Bundle: xcpMyInsight
+Bundle-Name: xcpMyInsight
+Bundle-ManifestVersion: 1
+Bundle-SymbolicName: xcpmi.xcpMyInsight
+NAMESPACE: xcpmi
