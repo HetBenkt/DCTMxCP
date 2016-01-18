@@ -3,12 +3,15 @@
  */
 package nl.amnl.myinsight.test;
 
-import static nl.amnl.myinsight.test.IContants.STR_PARAM_REPOSITORY;
-import static nl.amnl.myinsight.test.IContants.STR_PARAM_TICKET;
-import static nl.amnl.myinsight.test.IContants.STR_PARAM_USER;
+import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_REPOSITORY;
+import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_TICKET;
+import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER;
+import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER_FIRST;
+import static nl.amnl.myinsight.test.IContants.STR_DM_TICKET;
 import static nl.amnl.myinsight.test.IContants.STR_PASSWORD;
 import static nl.amnl.myinsight.test.IContants.STR_REPOSITORY;
-import static nl.amnl.myinsight.test.IContants.STR_URL;
+import static nl.amnl.myinsight.test.IContants.STR_TEST_URL1;
+import static nl.amnl.myinsight.test.IContants.STR_TEST_URL2;
 import static nl.amnl.myinsight.test.IContants.STR_USERNAME;
 import static org.junit.Assert.assertEquals;
 import nl.amnl.myinsight.common.DFCUtils;
@@ -39,10 +42,26 @@ public class GenerateURLServiceTest {
 		dfcUtils.createSessionManager(STR_REPOSITORY, STR_USERNAME,
 				STR_PASSWORD);
 		session = dfcUtils.getSessioFromSessionManager(STR_REPOSITORY);
-		expected = String.format(STR_URL + STR_PARAM_USER
-				+ STR_PARAM_REPOSITORY + STR_PARAM_TICKET,
-				session.getLoginUserName(), session.getDocbaseName(),
-				session.getLoginTicket());
+	}
+
+	/**
+	 * Set the expected value for the tested URL
+	 * 
+	 * @param url
+	 *            is the url to test
+	 * @return the expected URL
+	 * @throws DfException
+	 *             when the session handling fails
+	 */
+	private String setExpectedValue(String url) throws DfException {
+		String userParameter = STR_PARAM_USER_FIRST;
+		if (GenerateURLService.hasQuestionMarkParameter(url)) {
+			userParameter = STR_PARAM_USER;
+		}
+		expected = String.format(url + userParameter + STR_PARAM_REPOSITORY
+				+ STR_PARAM_TICKET, session.getLoginUserName(),
+				session.getDocbaseName(), session.getLoginTicket());
+		return expected;
 	}
 
 	/**
@@ -63,11 +82,29 @@ public class GenerateURLServiceTest {
 		GenerateURLService service = new GenerateURLService(true);
 		service.setSession(session);
 		try {
-			String actual = service.generateURL(STR_URL);
-			assertEquals(expected.substring(0, expected.indexOf("DM_TICKET=")),
-					actual.substring(0, actual.indexOf("DM_TICKET=")));
+			// Test URL1
+			setExpectedValue(STR_TEST_URL1);
+			doTheTest(STR_TEST_URL1, service);
+
+			// Test URL2
+			setExpectedValue(STR_TEST_URL2);
+			doTheTest(STR_TEST_URL2, service);
 		} catch (DfException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	/**
+	 * Execute the test
+	 * @param url is the input URL to test
+	 * @param service to call the service method
+	 * @throws DfException when the session handling fails
+	 */
+	private void doTheTest(String url, GenerateURLService service)
+			throws DfException {
+		String actual = service.generateURL(url);
+		System.out.println(actual);
+		assertEquals(expected.substring(0, expected.indexOf(STR_DM_TICKET)),
+				actual.substring(0, actual.indexOf(STR_DM_TICKET)));
 	}
 }

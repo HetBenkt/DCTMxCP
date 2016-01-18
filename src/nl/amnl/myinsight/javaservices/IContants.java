@@ -8,7 +8,9 @@ public interface IContants {
 	public final static String STR_INPUT_PARAM = "Input param: %s";
 	public final static String STR_OUTPUT_PARAM = "Output param: %s";
 	public final static String STR_EMPTY = "";
+	public final static String STR_QUESTION_MARK = "?";
 
+	public final static String STR_PARAM_USER_FIRST = "?user=%s";
 	public final static String STR_PARAM_USER = "&user=%s";
 	public final static String STR_PARAM_REPOSITORY = "&repository=%s";
 	public final static String STR_PARAM_TICKET = "&ticket=%s";

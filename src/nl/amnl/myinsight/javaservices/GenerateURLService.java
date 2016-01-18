@@ -10,6 +10,8 @@ import static nl.amnl.myinsight.javaservices.IContants.STR_OUTPUT_PARAM;
 import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_REPOSITORY;
 import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_TICKET;
 import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER;
+import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER_FIRST;
+import static nl.amnl.myinsight.javaservices.IContants.STR_QUESTION_MARK;
 import static nl.amnl.myinsight.javaservices.IContants.STR_SERVICE;
 import static nl.amnl.myinsight.javaservices.IContants.STR_SESSION_UP;
 import static nl.amnl.myinsight.javaservices.IContants.STR_START;
@@ -28,6 +30,14 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 	private boolean isUnitTest = false;
 
 	/**
+	 * Default constructor for BOF module to be loaded; Avoids the error:
+	 * [DM_VEL_INSTANTIATION_ERROR] -> "Cannot instantiate Java class"
+	 */
+	public GenerateURLService() {
+		super();
+	}
+
+	/**
 	 * Helper constructor for the JUnit test
 	 * 
 	 * @param isUnitTest
@@ -35,6 +45,7 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 	 *            created differently
 	 */
 	public GenerateURLService(boolean isUnitTest) {
+		super();
 		this.isUnitTest = isUnitTest;
 	}
 
@@ -67,7 +78,12 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 			// Do your custom logic with a session
 			// Add the additional parameters for MyInsight:
 			// &user=<USER_NAME>&repository=<REPOSITORY_NAME>&ticket=<PASSWORD>
-			builder.append(String.format(STR_PARAM_USER,
+			String userParameter = STR_PARAM_USER_FIRST;
+			if(hasQuestionMarkParameter(url)) {
+				userParameter = STR_PARAM_USER;
+			}
+			
+			builder.append(String.format(userParameter,
 					session.getLoginUserName()));
 			builder.append(String.format(STR_PARAM_REPOSITORY,
 					session.getDocbaseName()));
@@ -97,5 +113,19 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 	 */
 	public void setSession(IDfSession session) {
 		this.session = session;
+	}
+	
+	/**
+	 * Check if the URL already has a parameter
+	 * @param strUrl is the URL to check
+	 * @return the result from the check if the URL already has a parameter
+	 */
+	public static boolean hasQuestionMarkParameter(String strUrl) {
+		boolean result = false;
+		
+		if(strUrl.contains(STR_QUESTION_MARK))
+			result = true;
+		
+		return result;
 	}
 }
