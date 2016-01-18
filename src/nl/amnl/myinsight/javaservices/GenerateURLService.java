@@ -1,6 +1,9 @@
 /**
  * Generates a correct URL to connect to MyInsight for Documentum
  * Note to compile with Java 7 as Java 8 gives errors in xCP Designer!
+ * Debug information: 
+ * 		After deployment with xCP designer do a remote debug session to the application server where the application is deployed
+ * 		Set the correct logging level log4j.properties in the WEB-INF/classes for your deployed application; Also see this file for the log location
  */
 package nl.amnl.myinsight.javaservices;
 
@@ -79,10 +82,10 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 			// Add the additional parameters for MyInsight:
 			// &user=<USER_NAME>&repository=<REPOSITORY_NAME>&ticket=<PASSWORD>
 			String userParameter = STR_PARAM_USER_FIRST;
-			if(hasQuestionMarkParameter(url)) {
+			if (hasQuestionMarkParameter(url)) {
 				userParameter = STR_PARAM_USER;
 			}
-			
+
 			builder.append(String.format(userParameter,
 					session.getLoginUserName()));
 			builder.append(String.format(STR_PARAM_REPOSITORY,
@@ -114,18 +117,20 @@ public class GenerateURLService extends DfSingleDocbaseModule {
 	public void setSession(IDfSession session) {
 		this.session = session;
 	}
-	
+
 	/**
 	 * Check if the URL already has a parameter
-	 * @param strUrl is the URL to check
+	 * 
+	 * @param strUrl
+	 *            is the URL to check
 	 * @return the result from the check if the URL already has a parameter
 	 */
 	public static boolean hasQuestionMarkParameter(String strUrl) {
 		boolean result = false;
-		
-		if(strUrl.contains(STR_QUESTION_MARK))
+
+		if (strUrl.contains(STR_QUESTION_MARK))
 			result = true;
-		
+
 		return result;
 	}
 }
