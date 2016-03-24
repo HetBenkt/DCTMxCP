@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<function xmlns="http://documentum.emc.com/2010/UI-Model"
+	id="JSFunction-ctmToUpper" version="1.0.0000.001">
+
+	<name>ctmToUpper</name>
+	<description>Returns the string produced by converting all of the characters in str to uppercase.</description>
+	<content src="content/xcpmi/functions/string/ctmToUpper.js" type="text/javascript"/>
+
+	<namespace>xcpmi.functions</namespace>
+	<categoryName>String</categoryName>
+
+	<returnType isRepeating="false">STRING</returnType>
+	<params>
+		<param name="strInput" required="true">
+			<type isRepeating="false">STRING</type>
+		</param>
+	</params>
+</function>

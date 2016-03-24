@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://documentum.emc.com/2010/UI-Model"
+        id="ctmButton" xtype="ctmButton" version="1.0.0000.001">
+
+    <name>ctmButton</name>
+    <description>Initiate a custom action.</description>
+
+    <dependencies>
+        <dependency componentId="xcp_button"/>
+    </dependencies>
+    
+    <icon src="icons/button_24_wig.png" width="24" height="24" />
+    <icon src="icons/button_wig.png" width="16" height="16" />
+
+    <content src="content/xcpmi/widgets/button/ctmButton.js" type="text/javascript"/>
+    <content src="content/xcpmi/widgets/button/ctmButtonDesigner.js" type="text/javascript" mode="design"/>
+
+    <category>xcpPalette:Custom</category>
+    
+    <configuration>
+        <propertyInfo name="width">
+            <label>Width</label>
+            <type>INTEGER</type>
+			<constraint>
+	            <validator type="inputDigitRange" lowerBound="1" upperBound="2048" lowerInclusive="true" upperInclusive="true"/>
+            </constraint>
+        </propertyInfo>
+        <propertyInfo name="debug">
+        	<label>Debug</label>
+        	<type>BOOLEAN</type>
+        	<defaultvalue>true</defaultvalue>
+        </propertyInfo>
+        
+        <propertyInfo name="text" localizable="true">
+            <label>Label</label>
+            <type>STRING</type>
+			<defaultvalue>Button</defaultvalue>
+			<constraint>
+	            <validator type="maxLength" maxLength="60"/>
+            </constraint>
+        </propertyInfo>
+        <propertyInfo name="action">
+            <label>Invoke</label>
+            <type>OBJECT</type>
+        </propertyInfo>
+        <propertyInfo name="actionInstanceId">
+            <label>Action instance</label>
+            <type>STRING</type>
+        </propertyInfo>
+		<propertyInfo name="cls">
+			<label>CSS Class</label>
+			<type>STRING</type>
+		</propertyInfo>
+		<propertyInfo name="disabled" eventBased="true">
+            <label>Disabled when</label>
+            <actionLabelForEvent>${ActionLabelForDisable}</actionLabelForEvent>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setDisabled</setterFunName>
+                <valueType>BOOLEAN</valueType>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                    <include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
+                </contextTree>
+            </expression>
+        </propertyInfo>
+        <propertyInfo name="hidden" eventBased="true">
+            <label>Hidden when</label>
+            <actionLabelForEvent>${ActionLabelForHide}</actionLabelForEvent>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setHidden</setterFunName>
+                <valueType>BOOLEAN</valueType>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                    <include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
+                </contextTree>
+                <disableProcessingOnRender>true</disableProcessingOnRender>
+                <initialDefaultExprValue>true</initialDefaultExprValue>
+            </expression>
+        </propertyInfo>
+        <propertyInfo name="redirectPageUrlName">
+            <label></label>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setRedirectPageUrlName</setterFunName>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                    <include>DATASOURCE_OUTPUT</include>
+                    <include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
+                </contextTree>
+                <enableExplicitEventSubscription>true</enableExplicitEventSubscription>
+            </expression>
+        </propertyInfo>
+        <propertyInfo name="redirectObjectId">
+            <label></label>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setRedirectObjectId</setterFunName>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                    <include>DATASOURCE_OUTPUT</include>
+                    <include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
+                </contextTree>
+                <enableExplicitEventSubscription>true</enableExplicitEventSubscription>
+            </expression>
+        </propertyInfo>
+    </configuration>
+    <events>
+        <eventInfo name="click"/>
+        <eventInfo name="focus"/>
+        <eventInfo name="blur"/>
+        <eventInfo name="hide"/>
+        <eventInfo name="show"/>
+        <eventInfo name="disable"/>
+        <eventInfo name="enable"/>
+    </events>
+</widget>
