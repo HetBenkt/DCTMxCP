@@ -1,2 +1,4 @@
 /bin/
 /documentum/
+/log4j.log
+/trace.log
