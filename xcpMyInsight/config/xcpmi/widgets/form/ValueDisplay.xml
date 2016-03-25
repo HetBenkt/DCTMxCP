@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://documentum.emc.com/2010/UI-Model"
+        id="mi_value_display" xtype="mi_value_display" version="1.0.0000.001">
+
+    <name>MI Value Display</name>
+    <description>Display the label and read-only value of an attribute.</description>
+
+    <dependencies>
+        <dependency componentId="xcp_value_display"/>
+    </dependencies>
+    
+    <icon src="icons/valuedisplay_24_wig.png" width="24" height="24" />
+    <icon src="icons/valuedisplay_wig.png" width="16" height="16" />
+
+    <content src="content/xcpmi/widgets/form/ValueDisplay.js" type="text/javascript"/>
+    <content src="content/xcpmi/widgets/form/designer/ValueDisplay.js" type="text/javascript" mode="design"/>
+
+    <category>xcpPalette:Custom</category>
+    
+    <configuration>
+        <propertyInfo name="debug">
+        	<label>Debug</label>
+        	<type>BOOLEAN</type>
+        	<defaultvalue>true</defaultvalue>
+        </propertyInfo>
+        <propertyInfo name="fieldLabel" localizable="true">
+            <label>Label</label>
+            <type>STRING</type>
+			<defaultvalue>Label</defaultvalue>
+			<constraint>
+	            <validator type="maxLength" maxLength="60"/>
+            </constraint>
+        </propertyInfo>
+        <propertyInfo name="valueType">
+        	<label>Data type</label>
+            <type>STRING</type>
+            <defaultvalue>STRING</defaultvalue>
+        </propertyInfo>
+		 <propertyInfo name="isRepeating">
+        	<label>Has multiple values</label>
+            <type>BOOLEAN</type>
+            <defaultvalue>false</defaultvalue>
+        </propertyInfo>
+        
+        <propertyInfo name="disabled" eventBased="true">
+            <label>Disabled when</label>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setDisabled</setterFunName>
+                <valueType>BOOLEAN</valueType>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                </contextTree>
+            </expression>
+        </propertyInfo>
+        
+        <propertyInfo name="hidden">
+            <label>Hidden when</label>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setHidden</setterFunName>
+                <contextTree>
+                    <include>PRIMARY_CONTEXT</include>
+                    <include>APP_CONTEXT</include>
+                    <include>WIDGET_CONTEXT</include>
+                </contextTree>
+            </expression>
+        </propertyInfo>
+    </configuration>
+</widget>

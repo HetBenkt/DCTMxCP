@@ -1,19 +1,19 @@
 /**
- * @class xcpmi.widget.form.CustomValueDisplay
+ * @class xcpmi.widgets.form.ValueDisplay
  * @extends xcp.widget.form.ValueDisplay
  * A read-only display of the label and value of an attribute.
- * @xtype custom_value_display
+ * @xtype mi_value_display
  */
-Ext.define("xcpmi.widgets.form.ctmValueDisplay", {
+Ext.define("xcpmi.widgets.form.ValueDisplay", {
     extend: "xcp.widget.form.ValueDisplay",
-    alias: "widget.ctmValueDisplay",
+    alias: "widget.mi_value_display",
     
     config: {
     	debug: true
     },
     
     constructor: function(config) {
-    	this.callParent(arguments);
+    	xcpmi.widgets.form.ValueDisplay.superclass.constructor.apply(this, [config]);
     	this.log("constructor", arguments);
     },
     
@@ -28,20 +28,5 @@ Ext.define("xcpmi.widgets.form.ctmValueDisplay", {
     		
     		console.log(id + ':', arguments);
     	}
-    },
-
-    resetWidgetHeight : function(){
-    	this.callParent(arguments);
-    },
-    setValue: function(value) {
-    	this.callParent(arguments);
-    },
-
-    resolvePickListValue: function(value) {
-    	this.callParent(arguments);
-    },
-
-    getValue: function() {
-    	this.callParent(arguments);
-    } 
+    }
 });

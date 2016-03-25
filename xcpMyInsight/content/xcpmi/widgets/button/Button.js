@@ -1,20 +1,19 @@
 /**
- * @class xcpmi.widget.button.CustomButton
+ * @class xcpmi.widgets.button.Button
  * @extends xcp.widget.button.Button
  * Allows users to initiate an action such as submitting a form or starting a search.
- * @xtype custom_button
+ * @xtype mi_button
  */
-Ext.define("xcpmi.widgets.button.ctmButton", {
+Ext.define("xcpmi.widgets.button.Button", {
     extend: "xcp.widget.button.Button",
-    alias: "widget.ctmButton",
+    alias: "widget.mi_button",
     
     config: {
     	debug: true
     },
     
     constructor: function(config) {
-    	this.callParent(arguments);
-    	this.log("constructor", arguments);
+    	xcpmi.widgets.button.Button.superclass.constructor.apply(this, [config]);
     },
     
     log: function() {
@@ -31,7 +30,7 @@ Ext.define("xcpmi.widgets.button.ctmButton", {
     },
     
     onClick: function() {
-    	this.callParent(arguments);
     	console.log('CLICK!!');
+    	this.log("onClick()", arguments);
     }
 });
