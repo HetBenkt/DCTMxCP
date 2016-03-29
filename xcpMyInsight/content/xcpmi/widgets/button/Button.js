@@ -7,13 +7,41 @@
 Ext.define("xcpmi.widgets.button.Button", {
     extend: "xcp.widget.button.Button",
     alias: "widget.mi_button",
+    xcpeventconfig: [
+                     'miclick',
+                     'click',
+                     'hide',
+                     'show'
+    ],
     
+    statics: {
+    	getClickedId: function(context, compId) {
+    		console.log("getClickedId()", arguments);
+    		var comp = context.getComponent(compId);
+            var value = '';
+            if (!comp) {
+                console.log("Could not find MyInsight button with id : " + compId);
+            } else {
+            	value = arguments[0];
+                console.log(comp);
+            }
+            return xcp.core.expr.BaseExpression.sanitizeObjectUri(value, context);
+    	}
+    },    
+                     
     config: {
     	debug: true
     },
     
     constructor: function(config) {
-    	xcpmi.widgets.button.Button.superclass.constructor.apply(this, [config]);
+    	this.callParent(arguments);
+    },
+    
+    initComponent: function() {
+    	this.addEvents(
+    			'miclick'
+    	);
+    	this.callParent(arguments);
     },
     
     log: function() {
@@ -32,5 +60,6 @@ Ext.define("xcpmi.widgets.button.Button", {
     onClick: function() {
     	console.log('CLICK!!');
     	this.log("onClick()", arguments);
+    	this.fireEvent('miclick', 'Hi event!');
     }
 });

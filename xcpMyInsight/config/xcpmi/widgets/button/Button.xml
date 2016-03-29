@@ -68,4 +68,28 @@
             </expression>
         </propertyInfo>
     </configuration>
+    
+    <expressionProperties>
+        <propertyInfo name="myInsightId">
+            <label>MyInsight Id</label>
+            <type>STRING</type>
+            <getterFun>
+                <name>xcpmi.widgets.button.Button.getClickedId</name>
+                <arguments>
+                    <argument>EVALUATION_CONTEXT</argument>
+                    <argument>WIDGET_ID</argument>
+                </arguments>
+            </getterFun>
+            <changeEvents>
+                <eventInfo name="miclick"/>
+            </changeEvents>
+        </propertyInfo>
+    </expressionProperties>
+    
+	<events>
+        <eventInfo name="miclick"/>
+        <eventInfo name="click"/>
+        <eventInfo name="hide"/>
+        <eventInfo name="show"/>
+    </events>
 </widget>

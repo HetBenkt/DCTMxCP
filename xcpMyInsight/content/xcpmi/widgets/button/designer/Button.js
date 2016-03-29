@@ -8,7 +8,7 @@
 Ext.define('xcpmi.widgets.button.designer.Button', {
 	extend: 'xcp.widget.button.designer.Button',
 	constructor: function(cmp){
-		xcpmi.widgets.button.designer.Button.superclass.constructor.call(this, cmp);
+		this.callParent(arguments);
 		
 		this.propertyConfig = {
 				"tabs": [{
