@@ -50,8 +50,7 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 								"name" : "value",
 								"label": xcp.Strings.widget.form.designer.ValueDisplay.valueSectionLabel,
 								"properties": [
-								               {"name": "valueType", "editor" : "com.emc.xcp.uitemplate.ui.property.section.special.DataTypePropertyEditor"},
-								               {"name": "isRepeating"}
+								               {"name": "valueType", "editor" : "com.emc.xcp.uitemplate.ui.property.section.special.DataTypePropertyEditor"}
 								              ]
 							}]
 						},
@@ -75,7 +74,13 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 		return "&#060;".concat(value,"&#062;");
 	},
 	updateComponent: function(propertiesJSONObject) {
-		javaLog("xcp.widget.designer.Plaintext", "updateComponent", "log");
+		if (propertiesJSONObject) {
+			console.log('updateComponent()');
+			console.log(propertiesJSONObject);
+			if(propertiesJSONObject.name === 'fieldLabel') {
+				this.cmp.setFieldLabel(propertiesJSONObject.value);
+			}  
+		}
 	}
 });
 

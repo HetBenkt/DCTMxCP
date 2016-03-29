@@ -18,6 +18,26 @@
     <category>xcpPalette:Custom</category>
     
     <configuration>
+        <databound name="value" eventBased="true">
+			<label>Initial Value</label>
+            <actionLabelForEvent>Set Value</actionLabelForEvent>
+            <type>EXPRESSION</type>
+            <expression>
+                <setterFunName>setValue</setterFunName>
+                <contextTree>
+                	<include>PRIMARY_CONTEXT</include>
+                	<include>APP_CONTEXT</include>
+                	<include>WIDGET_CONTEXT</include>
+                	<include>DATASOURCE_OUTPUT</include>
+                	<include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
+                </contextTree>
+                <evaluateInitialOnly>true</evaluateInitialOnly>
+            </expression>
+        </databound>
+
         <propertyInfo name="debug">
         	<label>Debug</label>
         	<type>BOOLEAN</type>
@@ -36,37 +56,68 @@
             <type>STRING</type>
             <defaultvalue>STRING</defaultvalue>
         </propertyInfo>
-		 <propertyInfo name="isRepeating">
-        	<label>Has multiple values</label>
-            <type>BOOLEAN</type>
-            <defaultvalue>false</defaultvalue>
-        </propertyInfo>
         
-        <propertyInfo name="disabled" eventBased="true">
-            <label>Disabled when</label>
+        <propertyInfo name="hidden" eventBased="true">
+            <label>Hidden when</label>
+            <actionLabelForEvent>Hide When</actionLabelForEvent>
             <type>EXPRESSION</type>
             <expression>
-                <setterFunName>setDisabled</setterFunName>
+                <setterFunName>setHidden</setterFunName>
                 <valueType>BOOLEAN</valueType>
                 <contextTree>
                     <include>PRIMARY_CONTEXT</include>
                     <include>APP_CONTEXT</include>
                     <include>WIDGET_CONTEXT</include>
+                    <include>SINGLE_OBJECT_DATA_SERVICE_OUTPUT</include>
+                    <include>UI_EVENTS</include>
+                    <include>SESSION_PARAMETERS</include>
+                    <include>FRAGMENT_INPUT</include>
                 </contextTree>
-            </expression>
-        </propertyInfo>
-        
-        <propertyInfo name="hidden">
-            <label>Hidden when</label>
-            <type>EXPRESSION</type>
-            <expression>
-                <setterFunName>setHidden</setterFunName>
-                <contextTree>
-                    <include>PRIMARY_CONTEXT</include>
-                    <include>APP_CONTEXT</include>
-                    <include>WIDGET_CONTEXT</include>
-                </contextTree>
+                <disableProcessingOnRender>true</disableProcessingOnRender>
+                <initialDefaultExprValue>true</initialDefaultExprValue>
             </expression>
         </propertyInfo>
     </configuration>
+
+    <expressionProperties>
+        <propertyInfo name="value">
+            <label>Value</label>
+            <type>STRING</type>
+            <getterFun>
+                <name>this.getValueFromWidget</name>
+                <arguments>
+                    <argument>EVALUATION_CONTEXT</argument>
+                    <argument>WIDGET_ID</argument>
+                    <argument>PROPERTY_ID</argument>
+                </arguments>
+            </getterFun>
+            <changeEvents>
+                <eventInfo name="change"/>
+            </changeEvents>
+        </propertyInfo>
+        <propertyInfo name="myInsightId">
+            <label>MyInsight Id</label>
+            <type>STRING</type>
+            <getterFun>
+                <name>xcpmi.widgets.form.ValueDisplay.getClickedId</name>
+                <arguments>
+                    <argument>EVALUATION_CONTEXT</argument>
+                    <argument>WIDGET_ID</argument>
+                </arguments>
+            </getterFun>
+            <changeEvents>
+                <eventInfo name="mi_event"/>
+            </changeEvents>
+        </propertyInfo>
+    </expressionProperties>
+    <events>
+        <eventInfo name="mi_event"/>
+        <eventInfo name="change"/>
+        <eventInfo name="focus"/>
+        <eventInfo name="blur"/>
+        <eventInfo name="hide"/>
+        <eventInfo name="show"/>
+        <eventInfo name="disable"/>
+        <eventInfo name="enable"/>
+    </events>
 </widget>
