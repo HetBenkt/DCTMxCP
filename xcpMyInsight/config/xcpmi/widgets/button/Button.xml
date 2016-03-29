@@ -32,7 +32,7 @@
         	<defaultvalue>true</defaultvalue>
         </propertyInfo>
         
-        <propertyInfo name="text" localizable="true">
+        <propertyInfo name="text">
             <label>Label</label>
             <type>STRING</type>
 			<defaultvalue>Button</defaultvalue>

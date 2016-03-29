@@ -42,9 +42,15 @@ Ext.define('xcpmi.widgets.button.designer.Button', {
 		};
 	},
 	updateComponent: function(propertiesJSONObject) {
-		javaLog("xcp.widget.designer.Plaintext", "updateComponent", "log");
-		if(propertiesJSONObject && propertiesJSONObject.name === 'width') {
-			this.cmp.setWidth(propertiesJSONObject.value);
+		if (propertiesJSONObject) {
+			javaLog("xcp.widget.designer.Plaintext", "updateComponent", "log");
+			console.log('updateComponent()');
+			console.log(propertiesJSONObject);
+			if(propertiesJSONObject.name === 'width') {
+				this.cmp.setWidth(propertiesJSONObject.value);
+			} else if(propertiesJSONObject.name === 'text') {
+				this.cmp.setText(propertiesJSONObject.value);
+			}  
 		}
 	}
 });
