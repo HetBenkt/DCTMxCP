@@ -54,6 +54,17 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 								              ]
 							}]
 						},
+						  {
+							  "name": "style",
+							  "sections": [{
+									"name" : "format",
+									"label": xcp.Strings.widget.form.designer.ValueDisplay.formatSectionLabel,
+									"properties": [
+									               {"name": "cls", "editor" : "com.emc.xcp.uitemplate.ui.property.linkpart.CSSClassPropertyEditor"},
+									               {"name": "format", "editor": "com.emc.xcp.uitemplate.ui.property.section.special.formatter.ValueFormatEditor"}
+									              ]
+								}]
+						  },
 						{
 	                        "name": xcp.Strings.widget.form.designer.ValueDisplay.behaviorTabLabel,
 	                        "sections":[{
@@ -79,7 +90,15 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 			console.log(propertiesJSONObject);
 			if(propertiesJSONObject.name === 'fieldLabel') {
 				this.cmp.setFieldLabel(propertiesJSONObject.value);
-			}  
+			} else if(propertiesJSONObject.name === 'cls') {
+				//remove the old cls class
+	            var oldClsClass = propertiesJSONObject.oldValue;
+	            if(oldClsClass != undefined && oldClsClass !== '') {
+	                this.cmp.removeCls(oldClsClass);
+	            }
+	            // Add the new cls class
+	            this.cmp.addCls(propertiesJSONObject.value);
+			} 
 		}
 	}
 });
