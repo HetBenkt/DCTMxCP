@@ -13,14 +13,14 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     
     statics: {
     	getClickedId: function(context, compId) {
-    		console.log("getClickedId()", arguments);
+    		console.log("getClickedId()", arguments[1]);
     		var comp = context.getComponent(compId);
             var value = '';
             if (!comp) {
                 console.log("Could not find MyInsight valueDisplay with id : " + compId);
             } else {
-            	value = arguments[0];
-                console.log(comp);
+                console.log(comp.id);
+            	value = comp.id;
             }
             return xcp.core.expr.BaseExpression.sanitizeObjectUri(value, context);
     	}
@@ -31,22 +31,25 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     },
     
     constructor: function(config) {
+    	debugger;
     	//Javascript aan de MyInsight kant
     	//var tagId = parent.Ext.dom.Query.select('.MI')[0].getAttribute('id');
     	//parent.Ext.getCmp(tagId).fireEvent('mi_event', 'test');
-
+    	
+    	//get id from widget
+    	var clsValue = config.cls;
+    	var urlValue = config.url;
+    	//MI URL ophalen uit config van widget in designer  met als parameter dat ID; kan wellicht worden opgebouwd via een HHTP request richting de server (zie Brava! widget)
+    	//Set deze URL waarde als input value voor zichtzelf.
+    	
     	if (config && config.valueType && config.valueType != undefined) {
             config.cls += ' xcp_value_display-' + config.valueType;
         }
     	
     	console.log('constructor!!');
     	this.log("constructor()", arguments);
-    	this.fireEventFromMI('mi_event', 'Hi event!');
     	
     	this.callParent(arguments);
-    	//get id from widget
-    	//MI URL ophalen uit config van widget in designer  met als parameter dat ID; kan wellicht worden opgebouwd via een HHTP request richting de server (zie Brava! widget)
-    	//Set deze URL waarde als input value voor zichtzelf.
     },
     
     initComponent: function() {
@@ -69,12 +72,7 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     	}
     },    
     
-    fireEventFromMI: function() {
-    	console.log('fireEventFromMI()');
-    	this.fireEvent('mi_event', 'Hi event!');
-    },
-    
-  //private
+    //private
     _updateFormatCls:function() {
 
         //Set the format class, if available on the input element.

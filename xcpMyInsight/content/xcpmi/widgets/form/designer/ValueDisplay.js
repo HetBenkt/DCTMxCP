@@ -43,7 +43,8 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 						"sections": [{
 								"name" : "basic",
 								"properties": [{"name": "fieldLabel"},
-								               {"name": "debug"}
+								               {"name": "debug"},
+								               {"name": "url"}
 											  ]
 							},
 							{

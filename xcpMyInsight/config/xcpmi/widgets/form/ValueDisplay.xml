@@ -64,6 +64,10 @@
 			<label>CSS Class</label>
 			<type>STRING</type>
 		</propertyInfo>
+		<propertyInfo name="url">
+			<label>URL</label>
+			<type>STRING</type>
+		</propertyInfo>
         
         <propertyInfo name="hidden" eventBased="true">
             <label>Hidden when</label>
