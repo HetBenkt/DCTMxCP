@@ -31,25 +31,78 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     },
     
     constructor: function(config) {
-    	debugger;
-    	//Javascript aan de MyInsight kant
+    	console.log('constructor START');
+		debugger;
+    	//Javascript in MyInsight report
     	//var tagId = parent.Ext.dom.Query.select('.MI')[0].getAttribute('id');
     	//parent.Ext.getCmp(tagId).fireEvent('mi_event', 'test');
     	
     	//get id from widget
     	var clsValue = config.cls;
+    	console.log(clsValue);
+		
+    	//get prefix myInsight URL
+    	//http://{host_name}:{port}/eDRG
     	var urlValue = config.url;
-    	//MI URL ophalen uit config van widget in designer  met als parameter dat ID; kan wellicht worden opgebouwd via een HHTP request richting de server (zie Brava! widget)
-    	//Set deze URL waarde als input value voor zichtzelf.
+    	console.log(urlValue);
+		
+    	//Rewrite URL with correct paramaters; they should come from a server call
+    	//http://{host_name}:{port}/eDRG?clsValue=MI&user=dmadmin&repository=MY_REPO&ticket=admin
+    	
+    	/*
+		//Does not support async calls!
+    	Ext.Ajax.request({
+    	    async: false,
+			url: 'http://172.25.180.131:8081/MyInsight/currentuser',
+    	    callback: function(options, success, response) {
+				console.log(JSON.parse(response.responseText).properties.login_name);
+			}
+    	});
+    	*/
+    	
+    	var xhr = new XMLHttpRequest();
+		var dataUser = undefined;
+		var dataRepo = undefined;
+		var flag = 0;
+		var urlCurrentUser = 'http://172.25.180.131:8081/MyInsight/currentuser';
+		var urlRepositoryName = 'http://172.25.180.131:8081/MyInsight/repositories/xcp_repository';
+    	xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				if(flag == 0) {
+					dataUser = JSON.parse(xhr.responseText).properties.login_name;
+					console.log(dataUser);
+				}
+				else {
+					dataRepo = JSON.parse(xhr.responseText).properties.name;
+					console.log(dataRepo);
+				}
+			}
+		}
+    	
+    	//xCP designer only likes asynch calls like this
+		xhr.open("GET", urlCurrentUser, true);
+		xhr.send();
+		flag = 1;
+    	//xCP designer only likes asynch calls like this
+		xhr.open("GET", urlRepositoryName, true);
+		xhr.send();
+
+		console.log(dataUser);
+		console.log(dataRepo);
+    	
+		urlValue += '?clsValue='+clsValue+'&user='+dataUser+'&repository='+dataRepo+'&ticket=admin';
+		console.log(urlValue);
+		
+    	//Set the new URL value as value for the widget
+    	//TODO
     	
     	if (config && config.valueType && config.valueType != undefined) {
             config.cls += ' xcp_value_display-' + config.valueType;
         }
     	
-    	console.log('constructor!!');
-    	this.log("constructor()", arguments);
-    	
+    	this.log("constructor", arguments);
     	this.callParent(arguments);
+    	console.log('constructor END');
     },
     
     initComponent: function() {
