@@ -121,6 +121,21 @@
                 <eventInfo name="mi_event"/>
             </changeEvents>
         </propertyInfo>
+        <propertyInfo name="value">
+            <label>Value</label>
+            <type>STRING</type>
+            <getterFun>
+                <name>this.getValueFromWidget</name>
+                <arguments>
+                    <argument>EVALUATION_CONTEXT</argument>
+                    <argument>WIDGET_ID</argument>
+                    <argument>PROPERTY_ID</argument>
+                </arguments>
+            </getterFun>
+            <changeEvents>
+                <eventInfo name="change"/>
+            </changeEvents>
+        </propertyInfo>
     </expressionProperties>
     <events>
         <eventInfo name="mi_event"/>

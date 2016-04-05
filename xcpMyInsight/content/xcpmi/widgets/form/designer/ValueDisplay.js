@@ -6,7 +6,8 @@ xcp.widget.form.ValueDisplay.override({
 
         // set the a blank value before rendering for performance.
         // the blank value gives the widget a height.
-        this.valueType = "NOTSTRING";
+        this.url = "";
+        this.valueType = "HTML";
         this.setValue("&nbsp;"); // Don't display expression value in design time.
     },
 
@@ -91,6 +92,8 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 			console.log(propertiesJSONObject);
 			if(propertiesJSONObject.name === 'fieldLabel') {
 				this.cmp.setFieldLabel(propertiesJSONObject.value);
+			} else if(propertiesJSONObject.name === 'url') {
+				//Do nothing;
 			} else if(propertiesJSONObject.name === 'cls') {
 				//remove the old cls class
 	            var oldClsClass = propertiesJSONObject.oldValue;

@@ -32,76 +32,7 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     
     constructor: function(config) {
     	console.log('constructor START');
-		debugger;
-    	//Javascript in MyInsight report
-    	//var tagId = parent.Ext.dom.Query.select('.MI')[0].getAttribute('id');
-    	//parent.Ext.getCmp(tagId).fireEvent('mi_event', 'test');
-    	
-    	//get id from widget
-    	var clsValue = config.cls;
-    	console.log(clsValue);
-		
-    	//get prefix myInsight URL
-    	//http://{host_name}:{port}/eDRG
-    	var urlValue = config.url;
-    	console.log(urlValue);
-		
-    	//Rewrite URL with correct paramaters; they should come from a server call
-    	//http://{host_name}:{port}/eDRG?clsValue=MI&user=dmadmin&repository=MY_REPO&ticket=admin
-    	
-    	/*
-		//Does not support async calls!
-    	Ext.Ajax.request({
-    	    async: false,
-			url: 'http://172.25.180.131:8081/MyInsight/currentuser',
-    	    callback: function(options, success, response) {
-				console.log(JSON.parse(response.responseText).properties.login_name);
-			}
-    	});
-    	*/
-    	
-    	var xhr = new XMLHttpRequest();
-		var dataUser = undefined;
-		var dataRepo = undefined;
-		var flag = 0;
-		var urlCurrentUser = 'http://172.25.180.131:8081/MyInsight/currentuser';
-		var urlRepositoryName = 'http://172.25.180.131:8081/MyInsight/repositories/xcp_repository';
-    	xhr.onreadystatechange = function() {
-			if(xhr.readyState == 4 && xhr.status == 200) {
-				if(flag == 0) {
-					dataUser = JSON.parse(xhr.responseText).properties.login_name;
-					console.log(dataUser);
-				}
-				else {
-					dataRepo = JSON.parse(xhr.responseText).properties.name;
-					console.log(dataRepo);
-				}
-			}
-		}
-    	
-    	//xCP designer only likes asynch calls like this
-		xhr.open("GET", urlCurrentUser, true);
-		xhr.send();
-		flag = 1;
-    	//xCP designer only likes asynch calls like this
-		xhr.open("GET", urlRepositoryName, true);
-		xhr.send();
-
-		console.log(dataUser);
-		console.log(dataRepo);
-    	
-		urlValue += '?clsValue='+clsValue+'&user='+dataUser+'&repository='+dataRepo+'&ticket=admin';
-		console.log(urlValue);
-		
-    	//Set the new URL value as value for the widget
-    	//TODO
-    	
-    	if (config && config.valueType && config.valueType != undefined) {
-            config.cls += ' xcp_value_display-' + config.valueType;
-        }
-    	
-    	this.log("constructor", arguments);
-    	this.callParent(arguments);
+		this.callParent(arguments);
     	console.log('constructor END');
     },
     
@@ -127,10 +58,98 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     
     //private
     _updateFormatCls:function() {
-
         //Set the format class, if available on the input element.
         if (this.formatCls) {
             this.inputEl.addCls(this.formatCls);
+        }
+    },
+    
+	setValue: function(value) {
+		//TODO Antal: Create custom xCP url generate service and call that one
+		//TODO Antal: asynch call in designer; synch call in App; Or make asynch work too in designer
+		//TODO DONE: How to set current with new URL
+		//TODO Antal: CLS readout can be removed; tag-id is now pickup up directly!
+		//TODO Antal: Pass the width and height parameters of the iframe from the designer!
+		//TODO DONE: When url has value in designer and the page is reopend; the url is accessed. 
+		//TODO Mark: myInsight-code must execute the javascript rewrite
+		
+		//Javascript in MyInsight report
+    	//parent.Ext.getCmp(tagId).fireEvent('mi_event', 'test');
+		
+		//get id from widget
+		var tagId = this.id;
+		console.log(tagId);
+		
+		//get prefix myInsight URL
+		//http://{host_name}:{port}/eDRG
+		var urlValue = this.url;
+		console.log(urlValue);
+		
+		//Rewrite URL with correct paramaters; they should come from a server call
+		//http://{host_name}:{port}/eDRG?clsValue=MI&user=dmadmin&repository=MY_REPO&ticket=admin
+		
+		/*
+		//Does not support async calls!
+		Ext.Ajax.request({
+			async: false,
+			url: 'http://172.25.180.131:8081/MyInsight/currentuser',
+			callback: function(options, success, response) {
+				console.log(JSON.parse(response.responseText).properties.login_name);
+			}
+		});
+		*/
+		
+		var xhr = new XMLHttpRequest();
+		var dataUser = undefined;
+		var dataRepo = undefined;
+		var flag = 0;
+		var urlCurrentUser = 'http://172.25.180.131:8081/MyInsight/currentuser';
+		var urlRepositoryName = 'http://172.25.180.131:8081/MyInsight/repositories/xcp_repository';
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				if(flag == 0) {
+					dataUser = JSON.parse(xhr.responseText).properties.login_name;
+					console.log(dataUser);
+				}
+				else {
+					dataRepo = JSON.parse(xhr.responseText).properties.name;
+					console.log(dataRepo);
+				}
+			}
+		}
+		
+		//xCP designer only likes asynch calls with TRUE; FALSE will make the page hang in designer; Might be a firewall thing
+		xhr.open("GET", urlCurrentUser, true);
+		xhr.send();
+		flag = 1;
+		//xCP designer only likes asynch calls with TRUE; FALSE will make the page hang in designer; Might be a firewall thing
+		xhr.open("GET", urlRepositoryName, true);
+		xhr.send();
+
+		console.log(dataUser);
+		console.log(dataRepo);
+		
+		var urlValueOld = urlValue;
+		urlValue += '?tagId='+tagId+'&user='+dataUser+'&repository='+dataRepo+'&ticket=admin';
+		console.log(urlValue);
+		
+		var oldRawValue = this.getRawValue();
+
+        //Apply formatting if configured.
+        xcpmi.widgets.form.ValueDisplay.superclass.setValue.apply(this, arguments);
+        value = xcp.formatter.Util.formatWidgetValues(this, value,
+                            xcp.Strings.widget.form.ValueDisplay.trueStr,
+                            xcp.Strings.widget.form.ValueDisplay.falseStr);
+
+        //Set the new URL value as value for the widget
+		if(oldRawValue == '' || urlValueOld == undefined) {
+			this.setRawValue(value);
+		} else {
+			this.setRawValue('<IFRAME style="height:300px; width:400px;" src="'+urlValue+'"></IFRAME>');
+		}
+
+        if (this.rendered && !this.isDestroyed && !this.width && this.getRawValue() != oldRawValue) {
+            this.updateLayout();
         }
     }
 });
