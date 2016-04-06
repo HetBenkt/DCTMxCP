@@ -65,14 +65,6 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     },
     
 	setValue: function(value) {
-		//TODO Antal: Create custom xCP url generate service and call that one
-		//TODO Antal: asynch call in designer; synch call in App; Or make asynch work too in designer
-		//TODO DONE: How to set current with new URL
-		//TODO Antal: CLS readout can be removed; tag-id is now pickup up directly!
-		//TODO Antal: Pass the width and height parameters of the iframe from the designer!
-		//TODO DONE: When url has value in designer and the page is reopend; the url is accessed. 
-		//TODO Mark: myInsight-code must execute the javascript rewrite
-		
 		//Javascript in MyInsight report
     	//parent.Ext.getCmp(tagId).fireEvent('mi_event', 'test');
 		
