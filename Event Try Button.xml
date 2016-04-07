@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <result>
     <settings>
+        <variable name="tagID">mi_value_display-XXXX</variable>
         <format type="float">#</format>
         <format type="date">yyyy/MM/dd hh:mm:ss</format>
         <reportname>Event Try Button</reportname>
     </settings>
     <objects name="NO_RESULT_QUERY"/>
     <query_times>
-        <duration>PT0.006S</duration>
+        <duration>PT0.008S</duration>
     </query_times>
 </result>
