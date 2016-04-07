@@ -64,15 +64,15 @@
 			<label>CSS Class</label>
 			<type>STRING</type>
 		</propertyInfo>
-		<propertyInfo name="url">
+		<propertyInfo name="furl">
 			<label>URL</label>
 			<type>STRING</type>
 		</propertyInfo>
-		<propertyInfo name="width">
+		<propertyInfo name="fwidth">
 			<label>Width</label>
 			<type>INTEGER</type>
 		</propertyInfo>
-		<propertyInfo name="height">
+		<propertyInfo name="fheight">
 			<label>Height</label>
 			<type>INTEGER</type>
 		</propertyInfo>

@@ -85,11 +85,11 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
 			
 			//get prefix myInsight URL
 			//http://{host_name}:{port}/eDRG
-			var urlValue = this.url;
+			var urlValue = this.furl;
 			console.log(urlValue);
 
-			var widthValue = this.width;
-			var heightValue = this.height;
+			var widthValue = this.fwidth;
+			var heightValue = this.fheight;
 			console.log(widthValue, heightValue);
 
 			//Rewrite URL with correct paramaters; they should come from a server call
