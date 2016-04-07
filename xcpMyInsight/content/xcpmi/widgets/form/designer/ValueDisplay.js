@@ -7,21 +7,6 @@ xcp.widget.form.ValueDisplay.override({
         // set the a blank value before rendering for performance.
         // the blank value gives the widget a height.
         this.setValue("&nbsp;"); // Don't display expression value in design time.
-    },
-
-    /**
-     * Ensures that the widget won't shrunk to zero size when the label is empty.
-     */
-    setFieldLabel: function(label) {
-        if (typeof this._initialLabelSeparator === "undefined") {
-            this._initialLabelSeparator = this.labelSeparator || '';
-        }
-        if (!label) {
-            this.labelSeparator = "";
-        } else {
-            this.labelSeparator = this._initialLabelSeparator;
-        }
-        return this.callParent(arguments);
     }
 });
 
@@ -41,32 +26,13 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 						"name": "general",
 						"sections": [{
 								"name" : "basic",
-								"properties": [{"name": "fieldLabel"},
-								               {"name": "debug"},
+								"properties": [{"name": "debug"},
 								               {"name": "furl"},
 								               {"name": "fwidth"},
 								               {"name": "fheight"}
 											  ]
-							},
-							{
-								"name" : "value",
-								"label": xcp.Strings.widget.form.designer.ValueDisplay.valueSectionLabel,
-								"properties": [
-								               {"name": "valueType", "editor" : "com.emc.xcp.uitemplate.ui.property.section.special.DataTypePropertyEditor"}
-								              ]
 							}]
 						},
-						  {
-							  "name": "style",
-							  "sections": [{
-									"name" : "format",
-									"label": xcp.Strings.widget.form.designer.ValueDisplay.formatSectionLabel,
-									"properties": [
-									               {"name": "cls", "editor" : "com.emc.xcp.uitemplate.ui.property.linkpart.CSSClassPropertyEditor"},
-									               {"name": "format", "editor": "com.emc.xcp.uitemplate.ui.property.section.special.formatter.ValueFormatEditor"}
-									              ]
-								}]
-						  },
 						{
 	                        "name": xcp.Strings.widget.form.designer.ValueDisplay.behaviorTabLabel,
 	                        "sections":[{
@@ -90,19 +56,9 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 		if (propertiesJSONObject) {
 			console.log('updateComponent()');
 			console.log(propertiesJSONObject);
-			if(propertiesJSONObject.name == 'fieldLabel') {
-				this.cmp.setFieldLabel(propertiesJSONObject.value);
-			} else if(propertiesJSONObject.name == 'furl') {
+			if(propertiesJSONObject.name == 'furl') {
 				//Do nothing;
-			} else if(propertiesJSONObject.name == 'cls') {
-				//remove the old cls class
-	            var oldClsClass = propertiesJSONObject.oldValue;
-	            if(oldClsClass != undefined && oldClsClass !== '') {
-	                this.cmp.removeCls(oldClsClass);
-	            }
-	            // Add the new cls class
-	            this.cmp.addCls(propertiesJSONObject.value);
-			} 
+			}
 		}
 	}
 });
