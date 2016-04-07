@@ -87,7 +87,11 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
 			//http://{host_name}:{port}/eDRG
 			var urlValue = this.url;
 			console.log(urlValue);
-			
+
+			var widthValue = this.width;
+			var heightValue = this.height;
+			console.log(widthValue, heightValue);
+
 			//Rewrite URL with correct paramaters; they should come from a server call
 			//http://{host_name}:{port}/eDRG?clsValue=MI&user=dmadmin&repository=MY_REPO&ticket=admin
 			
@@ -148,7 +152,7 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
 			if(oldRawValue == '' || urlValueOld == undefined) {
 				this.setRawValue(value);
 			} else {
-				this.setRawValue('<IFRAME style="height:300px; width:400px;" src="'+urlValue+'"></IFRAME>');
+				this.setRawValue('<IFRAME style="height:'+heightValue+'px; width:'+widthValue+'px;" src="'+urlValue+'"></IFRAME>');
 			}
 	
 	        if (this.rendered && !this.isDestroyed && !this.width && this.getRawValue() != oldRawValue) {

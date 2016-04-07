@@ -68,6 +68,14 @@
 			<label>URL</label>
 			<type>STRING</type>
 		</propertyInfo>
+		<propertyInfo name="width">
+			<label>Width</label>
+			<type>INTEGER</type>
+		</propertyInfo>
+		<propertyInfo name="height">
+			<label>Height</label>
+			<type>INTEGER</type>
+		</propertyInfo>
         
         <propertyInfo name="hidden" eventBased="true">
             <label>Hidden when</label>

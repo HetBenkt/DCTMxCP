@@ -45,7 +45,9 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 								"name" : "basic",
 								"properties": [{"name": "fieldLabel"},
 								               {"name": "debug"},
-								               {"name": "url"}
+								               {"name": "url"},
+								               {"name": "width"},
+								               {"name": "height"}
 											  ]
 							},
 							{
@@ -81,7 +83,7 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 		};
 	},
 	addCanvasDisplayText : function (value){
-		if ((value == null) || (value =="")){
+		if ((value == null) || (value == "")){
 			return "";
 		}
 		return "&#060;".concat(value,"&#062;");
@@ -90,11 +92,11 @@ Ext.define('xcpmi.widgets.form.designer.ValueDisplay', {
 		if (propertiesJSONObject) {
 			console.log('updateComponent()');
 			console.log(propertiesJSONObject);
-			if(propertiesJSONObject.name === 'fieldLabel') {
+			if(propertiesJSONObject.name == 'fieldLabel') {
 				this.cmp.setFieldLabel(propertiesJSONObject.value);
-			} else if(propertiesJSONObject.name === 'url') {
+			} else if(propertiesJSONObject.name == 'url') {
 				//Do nothing;
-			} else if(propertiesJSONObject.name === 'cls') {
+			} else if(propertiesJSONObject.name == 'cls') {
 				//remove the old cls class
 	            var oldClsClass = propertiesJSONObject.oldValue;
 	            if(oldClsClass != undefined && oldClsClass !== '') {
