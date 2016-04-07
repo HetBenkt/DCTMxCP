@@ -56,15 +56,7 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
     	}
     },    
     
-    //private
-    _updateFormatCls:function() {
-        //Set the format class, if available on the input element.
-        if (this.formatCls) {
-            this.inputEl.addCls(this.formatCls);
-        }
-    },
-    
-	setValue: function(value) {
+    setValue: function(value) {
 		//Check if we are in the designer
 		var isDesignerRun = false;
 		console.log(this.id, this.xcpId);
@@ -93,7 +85,7 @@ Ext.define("xcpmi.widgets.form.ValueDisplay", {
 			console.log(widthValue, heightValue);
 
 			//Rewrite URL with correct paramaters; they should come from a server call
-			//http://{host_name}:{port}/eDRG?clsValue=MI&user=dmadmin&repository=MY_REPO&ticket=admin
+			//http://{host_name}:{port}/eDRG?tagId=MI&user=dmadmin&repository=MY_REPO&ticket=admin
 			
 			/*
 			//Does not support async calls!

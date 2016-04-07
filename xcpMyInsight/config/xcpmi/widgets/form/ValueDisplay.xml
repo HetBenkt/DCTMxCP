@@ -43,27 +43,6 @@
         	<type>BOOLEAN</type>
         	<defaultvalue>true</defaultvalue>
         </propertyInfo>
-        <propertyInfo name="fieldLabel" localizable="true">
-            <label>Label</label>
-            <type>STRING</type>
-			<defaultvalue>Label</defaultvalue>
-			<constraint>
-	            <validator type="maxLength" maxLength="60"/>
-            </constraint>
-        </propertyInfo>
-        <propertyInfo name="valueType">
-        	<label>Data type</label>
-            <type>STRING</type>
-            <defaultvalue>STRING</defaultvalue>
-        </propertyInfo>
-        <propertyInfo name="format">
-			<label>Format</label>
-			<type>OBJECT</type>
-		</propertyInfo>
-		<propertyInfo name="cls">
-			<label>CSS Class</label>
-			<type>STRING</type>
-		</propertyInfo>
 		<propertyInfo name="furl">
 			<label>URL</label>
 			<type>STRING</type>
