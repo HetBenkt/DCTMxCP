@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<nsJavaModule:JavaModule xmlns:nsJavaModule="http://xcp.emc.com/javamodule"
-urn="urn:xcrcore:com.emc.xcp.artifact.javamodule.category:Artifacts/Java Modules/Car_Rental_Java_Function.javamodule"
-categoryId="com.emc.xcp.artifact.javamodule.category" name="Car_Rental_Java_Function" label="Car Rental Java Function"
-implementationClass="nl.amnl.myinsight.javafunctions.GetTicketFunction">
-  <interfaceClassNames>com.emc.xcp.expressions.FunctionClass</interfaceClassNames>
-  <implementationJars contentPath="content/modules/Get_Ticket_Java_Function.jar"/> 
-</nsJavaModule:JavaModule>

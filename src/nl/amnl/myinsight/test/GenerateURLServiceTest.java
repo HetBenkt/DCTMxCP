@@ -3,10 +3,10 @@
  */
 package nl.amnl.myinsight.test;
 
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_REPOSITORY;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_TICKET;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER_FIRST;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_REPOSITORY;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_TICKET;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_USER;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_USER_FIRST;
 import static nl.amnl.myinsight.test.IContants.STR_DM_TICKET;
 import static nl.amnl.myinsight.test.IContants.STR_PASSWORD;
 import static nl.amnl.myinsight.test.IContants.STR_REPOSITORY;

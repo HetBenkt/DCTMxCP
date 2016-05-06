@@ -1,6 +1,6 @@
 package nl.amnl.myinsight.javaservices;
 
-public interface IContants {
+public interface IConstants {
 	public final static String STR_SERVICE = "Service %s ";
 	public final static String STR_START = "START";
 	public final static String STR_END = "END";

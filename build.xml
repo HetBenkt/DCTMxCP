@@ -1,0 +1,49 @@
+<project>
+	<property name="dir.samples" value="E:\\Documentum\\Software\\xCP2.2\\samples"/>
+	<property name="dir.app" value="E:\\Documentum\\Software\xCP2.2\\xCPDesigner_win64_2.2\\xCPDesigner\\Applications\\MyInsightCustom\\MyInsightCustom"/>
+	<property name="jar.mi.function" value="xCP_MyInsight_JavaFunction"/>
+	<property name="jar.mi.service" value="xCP_MyInsight_JavaService"/>
+	<property name="jar.mi" value="xCP_MyInsight"/>
+	<property name="xcp.version" value="2.2.0000.2960"/>
+	<property name="xcp.name" value="xcpMyInsight"/>
+	
+	<target name="JAR ${jar.mi.function}">
+		<delete file="${dir.app}\\content\\modules\\${jar.mi.function}.jar"></delete>
+		<jar destfile="${dir.app}\\content\\modules\\${jar.mi.function}.jar" basedir="bin">
+			<include name="nl/amnl/myinsight/javafunctions/GetTicketFunction.class"/>
+			<include name="nl/amnl/myinsight/javafunctions/IConstants.class"/>
+		</jar>
+		<copy file="GetTicketFunction.javamodule" tofile="${dir.app}\\Artifacts\\Java Modules\\GetTicketFunction.javamodule"></copy>
+	</target>
+
+	<target name="JAR ${jar.mi.service}">
+		<delete file="${dir.samples}\\${jar.mi.service}.jar"></delete>
+		<jar destfile="${dir.samples}\\${jar.mi.service}.jar" basedir="bin">
+			<include name="nl/amnl/myinsight/javaservices/GenerateURLService.class"/>
+			<include name="nl/amnl/myinsight/javaservices/IConstants.class"/>
+		</jar>
+	</target>
+	
+	<target name="JAR ${jar.mi}">
+		<delete file="${dir.samples}\\${jar.mi}.jar"></delete>
+		<jar destfile="${dir.samples}\\${jar.mi}.jar">
+			<fileset dir=".">
+				<include name="${xcp.name}/**"/>
+			</fileset>
+			<manifest>
+				<attribute name="Copyright" value="AMPLEXOR"/>
+				<attribute name="Bundle-SymbolicName" value="xcpmi.${xcp.name}"/>
+				<attribute name="Built-By" value="bosa"/>
+				<attribute name="Bundle-ManifestVersion" value="1"/>
+				<attribute name="EMC-XCP-ExecutionEnvironment" value="com.emc.executionenvironment.xcp:2.2.0"/>
+				<attribute name="Component-Bundle" value="${xcp.name}"/>
+				<attribute name="Version" value="1.0"/>
+				<attribute name="Bundle-Version" value="${xcp.version}"/>
+				<attribute name="Bundle-Name" value="${xcp.name}"/>
+				<attribute name="NAMESPACE" value="xcpmi"/>
+				<attribute name="Created-By" value="AMNL"/>
+				<attribute name="Build-Version" value="${xcp.version}"/>
+			</manifest>
+		</jar>
+	</target>
+</project>

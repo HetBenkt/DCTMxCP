@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nsJavaModule:JavaModule xmlns:nsJavaModule="http://xcp.emc.com/javamodule"
+urn="urn:xcrcore:com.emc.xcp.artifact.javamodule.category:Artifacts/Java Modules/GetTicketFunction.javamodule"
+categoryId="com.emc.xcp.artifact.javamodule.category" name="GetTicketFunction" label="Get Ticket Function"
+implementationClass="nl.amnl.myinsight.javafunctions.GetTicketFunction">
+  <interfaceClassNames>com.emc.xcp.expressions.FunctionClass</interfaceClassNames>
+  <implementationJars contentPath="content/modules/xCP_MyInsight_JavaFunction.jar"/> 
+</nsJavaModule:JavaModule>

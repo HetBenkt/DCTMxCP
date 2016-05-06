@@ -7,17 +7,17 @@
  */
 package nl.amnl.myinsight.javaservices;
 
-import static nl.amnl.myinsight.javaservices.IContants.STR_END;
-import static nl.amnl.myinsight.javaservices.IContants.STR_INPUT_PARAM;
-import static nl.amnl.myinsight.javaservices.IContants.STR_OUTPUT_PARAM;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_REPOSITORY;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_TICKET;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER;
-import static nl.amnl.myinsight.javaservices.IContants.STR_PARAM_USER_FIRST;
-import static nl.amnl.myinsight.javaservices.IContants.STR_QUESTION_MARK;
-import static nl.amnl.myinsight.javaservices.IContants.STR_SERVICE;
-import static nl.amnl.myinsight.javaservices.IContants.STR_SESSION_UP;
-import static nl.amnl.myinsight.javaservices.IContants.STR_START;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_END;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_INPUT_PARAM;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_OUTPUT_PARAM;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_REPOSITORY;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_TICKET;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_USER;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_PARAM_USER_FIRST;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_QUESTION_MARK;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_SERVICE;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_SESSION_UP;
+import static nl.amnl.myinsight.javaservices.IConstants.STR_START;
 
 import com.documentum.fc.client.DfSingleDocbaseModule;
 import com.documentum.fc.client.IDfSession;

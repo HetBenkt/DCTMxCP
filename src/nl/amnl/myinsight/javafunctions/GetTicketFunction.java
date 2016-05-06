@@ -9,10 +9,10 @@
  */
 package nl.amnl.myinsight.javafunctions;
 
-import static nl.amnl.myinsight.javafunctions.IContants.STR_END;
-import static nl.amnl.myinsight.javafunctions.IContants.STR_FUNCTION;
-import static nl.amnl.myinsight.javafunctions.IContants.STR_MYINSIGHT;
-import static nl.amnl.myinsight.javafunctions.IContants.STR_START;
+import static nl.amnl.myinsight.javafunctions.IConstants.STR_END;
+import static nl.amnl.myinsight.javafunctions.IConstants.STR_FUNCTION;
+import static nl.amnl.myinsight.javafunctions.IConstants.STR_MYINSIGHT;
+import static nl.amnl.myinsight.javafunctions.IConstants.STR_START;
 
 import com.documentum.fc.client.IDfSession;
 import com.documentum.fc.common.DfException;
