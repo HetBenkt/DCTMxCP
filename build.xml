@@ -1,6 +1,6 @@
 <project>
 	<property name="dir.samples" value="E:\\Documentum\\Software\\xCP2.2\\samples"/>
-	<property name="dir.app" value="E:\\Documentum\\Software\xCP2.2\\xCPDesigner_win64_2.2\\xCPDesigner\\Applications\\MyInsightCustom\\MyInsightCustom"/>
+	<property name="dir.app" value="E:\\Documentum\\Software\xCP2.2\\xCPDesigner_win64_2.2\\xCPDesigner\\Applications\\MyInsight\\MyInsightProject"/>
 	<property name="jar.mi.function" value="xCP_MyInsight_JavaFunction"/>
 	<property name="jar.mi.service" value="xCP_MyInsight_JavaService"/>
 	<property name="jar.mi" value="xCP_MyInsight"/>
